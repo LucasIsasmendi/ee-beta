@@ -25,6 +25,21 @@ var ArticleSchema = new Schema({
     required: true,
     trim: true
   },
+  url: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  tags: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  categories: {
+    type: String,
+    required: true,
+    trim: true
+  },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

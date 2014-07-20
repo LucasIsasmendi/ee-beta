@@ -11,13 +11,43 @@
 
     </div>
     <div class="form-group" ng-class="{ 'has-error' : submitted && articleForm.content.$invalid }">
-      <label mean-token="'create-content'" for="content" class="col-md-3 control-label">Content</label>
+      <label mean-token="'create-content'" for="content" class="col-md-3 control-label">Description</label>
       <div class="col-md-9">
         <textarea name="content" data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" class="form-control" required></textarea>
         <div ng-show="submitted && articleForm.content.$invalid" class="help-block">
           <p ng-show="articleForm.content.$error.required">Content is required</p>
         </div>
       </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && articleForm.url.$invalid }">
+      <label mean-token="'create-url'" class="col-md-3 control-label">URL</label>
+      <div class="col-md-9">
+        <input name="url" type="text" class="form-control" data-ng-model="url" id="url" placeholder="URL" required>
+        <div ng-show="submitted && articleForm.url.$invalid" class="help-block">
+          <p ng-show="articleForm.url.$error.required">URL is required</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && articleForm.tags.$invalid }">
+      <label mean-token="'create-tags'" class="col-md-3 control-label">Tags</label>
+      <div class="col-md-9">
+        <input name="tags" type="text" class="form-control" data-ng-model="tags" id="tags" placeholder="Tags" required>
+        <div ng-show="submitted && articleForm.tags.$invalid" class="help-block">
+          <p ng-show="articleForm.tags.$error.required">Tags are required</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && articleForm.categories.$invalid }">
+      <label mean-token="'create-categories'" class="col-md-3 control-label">Categories</label>
+      <div class="col-md-9">
+        <input name="categories" type="text" class="form-control" data-ng-model="categories" id="categories" placeholder="Categories" required>
+        <div ng-show="submitted && articleForm.categories.$invalid" class="help-block">
+          <p ng-show="articleForm.categories.$error.required">Categories are required</p>
+        </div>
+      </div>
+
     </div>
     <div class="form-group">
       <div class="col-md-offset-3 col-md-9">
