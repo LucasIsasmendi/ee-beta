@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "createdOn": "new Date()",
+    "uploadedBy": "mohanlate",
+    "duration": "900s"
+  },
+  "categories": [
+    "local-news",
+    "local-sports",
+    "culture"
+  ],
+  "tags": [
+    "best",
+    "athletics"
+  ],
+  "stats": {
+    "numberofLikes": 5,
+    "numberofDislikes": 2,
+    "numberOfShares": {
+      "onFacebook": 2,
+      "onTwitter": 1
+    },
+    "numberOfComments": 12,
+    "numberOfViews" : 1000
+  }
+}
