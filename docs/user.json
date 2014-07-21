@@ -1,0 +1,40 @@
+{
+    "name" : {
+        "first" : "mohan",
+        "last" : "late"
+    },
+    "email" : "mohan.late@gmail.com",
+    "location" : {
+        "country" : "India",
+        "state" : "Maharashtra",
+        "city" : "Pune"
+    },
+    "login" : { 
+        "username" : "mohan.late",
+        "password" : "12345",
+        "secretQuestion" : "what is the name of your cat?",
+        "secretAnswer" : "einstien"
+    },
+    "uploads" : {
+    	"pq9fmurpl4lkow" : "/uploads/pq9fmurpl4lkow.mp4",
+    	"pe567ur7l8l9fr" : "/uploads/pe567ur7l8l9fr.mp4"
+	},
+    "socialNetwork" : {
+        "facebook" : {
+            "id" : "mohanlate"
+        },
+        "twitter" : {            
+            "id" : "mohanlate"
+        },
+        "youtube" : {
+            "id" : "mohanlate"
+        }
+    },
+    "network" : {
+        "following" : ["thomas", "vivek"],
+        "followers" : ["saroj", "thomas", "vivek"]
+    },
+    "interests" : ["cricket", "chess", "film-noir", "movie-making"],
+    "rights" : ["author", "administrator", "users"],
+    "lastLoggedOn" : "new Date()"
+}
