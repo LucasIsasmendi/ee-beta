@@ -1,0 +1,28 @@
+<div>
+    <h2>Manage Your videos</h2>
+    <table class="table">
+    	<thead>
+    		<tr><th>Title</th> <th>Visible</th><th>Comments</th><th>Manage</th></tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-repeat="video in videosList">
+    			<td><a data-ng-href="#!/player/{{video._id}}">{{video.title}}</a></td>
+    			<td>
+    				<span ng-if="video.public">Public</span>
+      				<span ng-if="!video.public">Private</span>
+    			</td>
+    			<td>
+    				<span ng-if="!video.enable_comments">Disabled</span>
+    				<span ng-if="video.enable_comments">{{video.comments.length}}</span>
+    			</td>
+    			<td>
+    				<p>
+    				    <a href="/#!/videos/{{video._id}}/edit" class="btn btn-primary" role="button"> <i class="glyphicon glyphicon-edit"></i></a> 
+    				    <a class="btn btn-danger" data-ng-click="remove(video);" role="button"><i class="glyphicon glyphicon-trash"></i></a>
+    				</p>
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
+           
+</div>

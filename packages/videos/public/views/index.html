@@ -1,0 +1,71 @@
+<div class="" data-ng-controller="VideosHomeController">
+	<div>
+			<div >
+				<ul class="nav nav-pills ">
+					<li><a ui-sref="videos"><i class="glyphicon glyphicon-home"></i></a></li>
+					<li><a ui-sref="videos.all"><i class="glyphicon glyphicon-th-list"></i> Browse videos</a> </li>
+					<li><a ui-sref="videos.my"><i class="glyphicon glyphicon-cog"></i> Upload manager</a> </li>
+					<li><a ui-sref="videos.create"><i class="glyphicon glyphicon-plus"></i> Upload video</a> </li>					
+				</ul>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-9" ui-view="videos-view">
+						<div class="well">
+							<form novalidate="novalidate" class="form-inline" role="form" name="videosearchform" ng-submit="videoSearch(videosearchform.$valid)">
+								<div class="form-group">
+									<label class="sr-only" for="search">Search</label>
+								    <input type="text" class="form-control" name="search" 
+								    	ng-model="videoSearchReq.word" required  
+								    	id="search" placeholder="search">
+								</div>
+								<button class="btn" type="submit" ><i class="glyphicon glyphicon-search"></i></button>
+							</form>
+						</div>
+
+						<div class="row" ng-show="videosList">
+						  <div class="col-sm-6 col-sm-3" ng-repeat="video in videosList">
+						    <div class="thumbnail">
+						      <img ng-show="video.thumb" ng-src="{{video.thumb}}" alt="{{video.title}}" />
+						      <img ng-show="!video.thumb" width="120" height="90" src="/videos/assets/img/video.jpg" />
+						      <div class="caption">
+						        <h3><a data-ng-href="#!/videos/{{video._id}}">{{video.title}}</a></h3>
+						        <p>{{video.description}}</p>
+						        <ul class="list-inline">
+						          <li ng-repeat="tagname in video.tags">
+						            <a ui-sref="videos.tag({tag:tagname})" ng-class="{'badge':activeTag==tagname}">{{tagname}}</a>
+						          </li>
+						        </ul>
+						        <p>
+						            <a href="/#!/videos/{{video._id}}/edit" class="btn btn-primary" role="button"> <i class="glyphicon glyphicon-edit"></i></a> 
+						            <a class="btn btn-danger" data-ng-click="remove(video);" role="button"><i class="glyphicon glyphicon-trash"></i></a>
+						        </p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				</div>
+				<div class="col-md-3">
+					<div>
+						<h4>Categories</h4>
+						<ul class="nav nav-pills nav-stacked">
+						  <li ng-class="{'active':activeCategory==cat}" ng-repeat="cat in categories">
+						    <a ui-sref="videos.category({category:cat})" >{{cat}}</a>
+						  </li>
+						</ul>
+
+						<h4>Tags</h4>
+						<ul class="list-inline">
+						  <li ng-repeat="tagname in tagList">
+						    <a ui-sref="videos.tag({tag:tagname})" class="label label-warning">{{tagname}}</a>
+						  </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+	</div>
+	
+	
+
+</div>

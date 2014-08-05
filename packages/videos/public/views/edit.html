@@ -1,0 +1,92 @@
+<section data-ng-controller="VideosCreateController" ng-init="findOne()" class="row">
+    <h2>Edit Video {{videoRequest.title}}</h2>
+    <div class="col-md-10 col-sm-12">
+            <form novalidate="novalidate" id="videoForm" name="videoForm" ng-submit="editForm(videoForm.$valid)">
+                <input type="hidden" name="fileType" ng-model="videoRequest.fileType">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" 
+                            ng-class="{ 'state-error' : videoForm.title.$invalid && !videoForm.title.$pristine, 'state-success': videoForm.title.$valid && !videoForm.title.$pristine}">
+                            <label for="" class="control-label">Title</label>
+                            <input type="text" ng-model="videoRequest.title" name="title" class="form-control" id="title" ng-minlength="6" ng-maxlength="24" required>
+                            <div ng-show="submitted && videoForm.title.$invalid" class="help-block">
+                              <p ng-show="videoForm.title.$error.required">Title is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             ng-class="{ 'state-error' : videoForm.description.$invalid && !videoForm.description.$pristine, 'state-success': videoForm.description.$valid && !videoForm.description.$pristine}">
+                            <label for="" class="control-label">Description</label>
+                            <textarea rows="4"  id="description" name="description" class="form-control" ng-model="video.description" ng-minlength="20" ng-maxlength="240" required></textarea>
+                            <div ng-show="submitted && videoForm.description.$invalid" class="help-block">
+                              <p ng-show="videoForm.description.$error.required">Description is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-hide="uploadFile">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             ng-class="{ 'state-error' : videoForm.location.$invalid && !videoForm.location.$pristine, 'state-success': videoForm.location.$valid && !videoForm.location.$pristine}">
+                            <label for="" class="control-label">Video Url</label>
+                            <input type="text" ng-model="videoRequest.location" name="location" class="form-control" id="location" required>
+                            <div ng-show="submitted && videoForm.location.$invalid" class="help-block">
+                              <p ng-show="videoForm.location.$error.required">Url is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             ng-class="{ 'state-error' : videoForm.location.$invalid && !videoForm.location.$pristine, 'state-success': videoForm.location.$valid && !videoForm.location.$pristine}">
+                            <label for="location" class="control-label">Upload Video</label>
+                            <mean-upload file-dest="'/public/uploads/'" upload-callback="uploadedVideo(files)" file-types="'video/mp4,video/3gpp'"></mean-upload>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             ng-class="{ 'state-error' : videoForm.tags.$invalid && !videoForm.tags.$pristine, 'state-success': videoForm.tags.$valid && !videoForm.tags.$pristine}">
+                            <label for="tags" class="control-label">Tags</label>
+                            <input type="text" ng-model="videoRequest.tags" name="tags" class="form-control" id="tags" required>
+                            <div ng-show="submitted && videoForm.tags.$invalid" class="help-block">
+                              <p ng-show="videoForm.tags.$error.required">Tags is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group"
+                             ng-class="{ 'state-error' : videoForm.categories.$invalid && !videoForm.categories.$pristine, 'state-success': videoForm.categories.$valid && !videoForm.categories.$pristine}">
+                            <label for="categories" class="control-label">Categories</label>
+                            <select ng-model="videoRequest.categories" name="categories" class="form-control" id="categories" required ng-options="k as v for (k, v) in categories" multiple></select>
+                            <div ng-show="submitted && videoForm.categories.$invalid" class="help-block">
+                              <p ng-show="videoForm.categories.$error.required">Categories is required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-dm-12">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" ng-model="videoRequest.public">
+                            Make it Public
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pull-right">
+                    <button type="button" class="btn btn-danger" ng-click="goBack();"><i class="glyphicon glyphicon-arrow-left">&nbsp;</i>Back</button>
+                    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-edit">&nbsp;</i>Submit</button>
+                </div>
+            </form>
+    </div>
+</section>
