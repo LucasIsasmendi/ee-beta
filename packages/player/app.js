@@ -20,7 +20,7 @@ Player.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Player.menus.add({
-        title: 'Play',
+        title: 'Player',
         link: 'player',
         roles: ['authenticated'],
         menu: 'main'
