@@ -1,26 +1,53 @@
-<div class="" data-ng-controller="PlayerController">
-	<h1>Example view from your new awesome package</h1>
-	<h2>Package: {{package.name}}</h2>
-	<ol>
-		<li>
-			<a href="player/example/anyone">Server route that anyone can access</a>
-		</li>
-		<li>
-			<a href="player/example/auth">Server route that requires authentication</a>
-		</li>
-		<li>
-			<a href="player/example/admin">Server route that requires admin user</a>
-		</li>
-		<li>
-			<a href="player/example/render">Raw Html rendering example from using swig</a>
-		</li>
-	</ol>
-	<h3><img src="/player/assets/img/logo.png" /></h3>
-	</br>
-	<p class="alert alert-info">You can find your package in /packages/player</p>
-	</br>
-	<p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/player</p>
-	</br>
-	<h3><a href="http://www.mean.io/#!/docs">Documentation</a></h3>
-	</br>
+<div data-ng-controller="PlayerController" ng-init="findOne()">
+	<h4>{{video.title}}</h4>
+		<div ng-switch="video.external">
+			<div ng-switch-when="">
+			
+				<video width="320" height="240" controls>
+				  <source ng-src="{{video.location}}" type="{{video.fileType}}">
+				Your browser does not support the video tag.
+				</video>
+			</div>
+			<div ng-switch-when="youtube.com">
+				<iframe class="youtube-player" type="text/html" width="640" height="385" ng-src="{{trustSrc(video.video_url)}}" allowfullscreen frameborder="0"></iframe>
+			</div>
+		</div>
+
+	<p>{{video.description}}</p>
+
+	<div class="comment-container">
+		<div ng-show="video.comments">
+			<div class="comment-row" ng-repeat="comment in video.comments">
+				<h4><span class="label label-default">{{comment.user.username}}</span> <small>{{comment.date | date:'MMM d, y h:mm a'}}</small></h4>
+				<div class="comment-text">
+					{{comment.comment}}
+				</div>
+			</div>
+		</div>
+
+		<div class="comment-new" ng-show="video.enable_comments">
+			<h3>Add Comment</h3>
+			<form name="commentForm" ng-submit="addComment(commentForm.$valid)">
+				<div class="row">
+				    <div class="col-md-6">
+				        <div class="form-group"
+				             ng-class="{ 'state-error' : commentForm.comment.$invalid && !commentForm.comment.$pristine, 'state-success': commentForm.comment.$valid && !commentForm.comment.$pristine}">
+				            <label class="sr-only" for="search">Comment</label>
+				            <textarea rows="4"  id="comment" name="comment" class="form-control" ng-model="commentRequest.comment" ng-minlength="20" ng-maxlength="240" required></textarea>
+				            <div ng-show="submitted && commentForm.comment.$invalid" class="help-block">
+				              <p ng-show="commentForm.comment.$error.required">Comment is required</p>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="pull-right">
+							<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-comment">&nbsp;</i>Submit</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

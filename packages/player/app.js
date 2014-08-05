@@ -3,7 +3,9 @@
 /*
  * Defining the Package
  */
-var Module = require('meanio').Module;
+var Module = require('meanio').Module,
+            mime = require('mime'),
+            express = require('express');
 
 var Player = new Module('player');
 
@@ -18,12 +20,14 @@ Player.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Player.menus.add({
-        title: 'player example page',
-        link: 'player example page',
+        title: 'Play',
+        link: 'player',
         roles: ['authenticated'],
         menu: 'main'
     });
 
+    app.use(express.static(__dirname + '/public/uploads'));
+    mime.charsets.lookup('video/3gpp');  
     /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
@@ -45,6 +49,7 @@ Player.register(function(app, auth, database) {
         //you now have the settings object
     });
     */
+    Player.aggregateAsset('css','player.css');
 
     return Player;
 });
