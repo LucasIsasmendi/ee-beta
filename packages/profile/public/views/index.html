@@ -1,0 +1,30 @@
+<div ng-controller="ProfileCtrl" ng-init="subscribedVideos()" ui-view>
+  <a ui-sref="profile.me">View my profile</a>
+
+  <div class="subscribedvideos" >
+    <h2>SUbscribed videos</h2>
+    <div class="" ng-show="subscribeVideoList">
+      <div class="" ng-repeat="video in subscribeVideoList">
+        <div class="row">
+          <div class="col-sm-2">
+            <a class="thumb" data-ng-href="#!/player/{{video._id}}">
+              <img ng-show="video.thumb" class="img-responsive" ng-src="{{video.thumb}}" alt="{{video.title}}" />
+              <img ng-show="!video.thumb" width="120" height="90" src="/video/assets/img/video.jpg" />
+            </a>
+          </div>  
+          
+          <div class="col-sm-10">
+            <h3><a data-ng-href="#!/player/{{video._id}}">{{video.title}}</a></h3>
+            <p class="">
+              <span class="text-left">Uploaded by <a ng-href="#!/profile/{{video.user._id}}">{{video.user.username}}</a></span> 
+              <span class="text-center">added on {{video.added | date:'short'}}</span> 
+              <span class="text-right">views {{video.view_count}}</span> 
+            </div>
+            <p>{{video.description}}</p>
+          </div>
+        </div>
+        <hr/>
+      </div>
+    </div>
+  </div>
+</div>

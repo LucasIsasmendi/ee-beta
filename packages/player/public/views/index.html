@@ -4,7 +4,7 @@
 			<div ng-switch-when="">
 			
 				<video width="320" height="240" controls>
-				  <source ng-src="{{video.location}}" type="{{video.fileType}}">
+				  <source ng-src="{{'/public/uploads/'+video._id}}" type="{{video.fileType}}">
 				Your browser does not support the video tag.
 				</video>
 			</div>
@@ -12,7 +12,9 @@
 				<iframe class="youtube-player" type="text/html" width="640" height="385" ng-src="{{trustSrc(video.video_url)}}" allowfullscreen frameborder="0"></iframe>
 			</div>
 		</div>
-
+    <div>
+        <p>Uploaded by : <a ng-href="#!/profile/{{video.user._id}}">{{video.user.username}}</a></p>
+    </div>
 	<p>{{video.description}}</p>
 
 	<div class="comment-container">

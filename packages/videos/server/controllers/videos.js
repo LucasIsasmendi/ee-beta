@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     Video = mongoose.model('Video'),
     Comment = mongoose.model('Comment'),
+    fs = require('fs'),
     _ = require('lodash');
 
 
@@ -45,7 +46,21 @@ exports.create = function(req, res) {
                 error: 'Cannot save the video'
             });
         }
-        res.json(video);
+
+        var sourceStream = fs.createReadStream(video._doc.location);
+        var destPath = process.cwd() + '/public/uploads/';
+        var destName = video._doc._id.toHexString();
+        var destinationFile = destPath + destName;
+        var destStream = fs.createWriteStream(destinationFile);
+        sourceStream
+          .on('error', function(error) {
+            console.error('Problem copying file: ' + error.stack);
+            return res.json(525, {
+              error: 'Cannot copy the file'
+            });
+          })
+          .on('end', function() {res.json(video);})
+          .pipe(destStream);
 
     });
 };
@@ -122,8 +137,8 @@ exports.all = function(req, res) {
 };
 
 exports.userVideos = function(req, res) {
-    
-    Video.find({user: req.user._id}).sort('-added')
+    var user_id = (req.query.userId) ? req.query.userId : req.user._id;
+    Video.find({user: user_id}).sort('-added')
     .populate('user', 'name username').exec(function(err, videos) {
         if (err) {
             return res.json(500, {

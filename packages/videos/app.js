@@ -45,6 +45,7 @@ Videos.register(function(app, auth, database) {
         //you now have the settings object
     });
     */
+    Videos.aggregateAsset('css','videos.css');
 
     return Videos;
 });

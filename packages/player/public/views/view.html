@@ -3,7 +3,7 @@
 		<div ng-switch="video.external">
 			<div ng-switch-when="">
 				<video width="320" height="240" controls>
-				  <source ng-src="{{video.location}}" type="{{video.fileType}}">
+				  <source ng-src="{{video._id}}" type="{{video.fileType}}">
 				Your browser does not support the video tag.
 				</video>
 			</div>
