@@ -5,7 +5,7 @@ npm-debug.log
 .bower-*/
 .idea/
 nbproject/
-node_modules/
+node_modules
 bower_components
 mean.iml
 test/coverage/
@@ -13,4 +13,4 @@ modules/public/
 modules/views/
 /public/build/
 /nbproject/private/
-public/uploads/
+public/uploads
