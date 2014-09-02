@@ -13,4 +13,4 @@ modules/public/
 modules/views/
 /public/build/
 /nbproject/private/
-/public/uploads/
+public/uploads/
